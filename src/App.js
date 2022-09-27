@@ -34,7 +34,8 @@ function App() {
     
       <Stack direction="row">
 
-        {/* {loginLocalStorageData&&<SideHeader />} */}
+      {loginLocalStorageData && <Navigate to="/ycw" />}
+      {!loginLocalStorageData && <Navigate to="/login" />}
        
 
         {(userTypeofLogin=="OPS")&&loginLocalStorageData&&<SideHeader />}
