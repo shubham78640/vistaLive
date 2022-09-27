@@ -16,6 +16,8 @@ import BasicInformation from "./pages/YcwDetailsPage/JobDetails/BasicInformation
 import Profile from "./components/ycw/Profilepage/Profile";
 import UserRegistration from "./pages/UserRegistration/UserRegistration";
 import { multiStepContext } from "./ContextApi/StepContext";
+import { Navigate } from "react-router-dom";
+
 
 
 function App() {
@@ -33,16 +35,12 @@ function App() {
      {loginLocalStorageData&&<Header/>}
     
       <Stack direction="row">
-
-      {loginLocalStorageData && <Navigate to="/ycw" />}
-      {!loginLocalStorageData && <Navigate to="/login" />}
-       
-
+        
         {(userTypeofLogin=="OPS")&&loginLocalStorageData&&<SideHeader />}
 
         <Routes>
        
-        <Route path="/" element={<YcwAllData/>}/>
+        <Route path="/" element={<Login/>}/>
         <Route path="/ycw" element={<YcwAllData/>}/>
         <Route path="/login" element={<Login/>} />
         <Route path="/registration" element={<UserRegistration/>} />
