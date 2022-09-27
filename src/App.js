@@ -35,12 +35,15 @@ function App() {
      {loginLocalStorageData&&<Header/>}
     
       <Stack direction="row">
-        
+
+      {!loginLocalStorageData && <Navigate to="/login" />}
+       
+
         {(userTypeofLogin=="OPS")&&loginLocalStorageData&&<SideHeader />}
 
         <Routes>
        
-        <Route path="/" element={<Login/>}/>
+        <Route path="/" element={<YcwAllData/>}/>
         <Route path="/ycw" element={<YcwAllData/>}/>
         <Route path="/login" element={<Login/>} />
         <Route path="/registration" element={<UserRegistration/>} />
