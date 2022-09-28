@@ -114,11 +114,16 @@ function Login() {
           JSON.stringify(response.data.data.userType)
         );
 
+
         if (response.data.data.userType === "OPS") {
           navigate("/ycw");
         }
-        if (response.data.data.userType === "FIELD_OFFICER") {
+        else if (response.data.data.userType === "FIELD_OFFICER") {
           navigate("/registration");
+        }else{
+          localStorage.clear();
+          navigate("/login");
+          window.location.reload(false);
         }
         setLoginData(response.data);
       } catch (error) {

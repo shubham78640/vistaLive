@@ -558,13 +558,14 @@ function Profile() {
               <Box
                 sx={{
                   display: "flex",
-                  justifyContent: "space-between",
+                  gap: "2%",
                   alignItems: "center",
+                  flexWrap: "wrap",
                   mt: 4,
                 }}
               >
                 <TextField
-                  sx={{ width: "18%" }}
+                  sx={{ width: "26%" }}
                   size="small"
                   value={skills.primaryLanguage}
                   id="outlined-basic"
@@ -575,7 +576,7 @@ function Profile() {
                   focused
                 />
                 <TextField
-                  sx={{ width: "18%" }}
+                  sx={{ width: "26%" }}
                   size="small"
                   value={skills.otherLanguage}
                   id="outlined-basic"
@@ -585,54 +586,134 @@ function Profile() {
                   InputLabelProps={{ shrink: true }}
                   focused
                 />
-
-                <TextField
-                  sx={{ width: "18%" }}
-                  size="small"
-                  // value={skills.skillsMappingDto[0].skillDto[0].skillName}
-                  id="outlined-basic"
-                  variant="filled"
-                  color="secondary"
-                  label="Primary Skills"
-                  InputLabelProps={{ shrink: true }}
-                  focused
-                />
-
-                <TextField
-                  sx={{ width: "18%" }}
-                  size="small"
-                  //  value={item.skillLevel}
-                  id="outlined-basic"
-                  variant="filled"
-                  color="secondary"
-                  label="Secondary Skills"
-                  InputLabelProps={{ shrink: true }}
-                  focused
-                />
-
-                <TextField
-                  sx={{ width: "18%" }}
-                  size="small"
-                  // value={skills.cityName}
-                  id="outlined-basic"
-                  variant="filled"
-                  color="secondary"
-                  label="TERTIARY Skills"
-                  InputLabelProps={{ shrink: true }}
-                  focused
-                />
+              
               </Box>
+              <Box mt={4}>
+                <h4>Primary Skills</h4>
+                <Box
+                  sx={{
+                    display: "flex",
+                    gap: "2%",
+                    mt: 1,
+                    flexWrap: "wrap",
+                  }}
+                >
+                  <h3> {primarySkillsDto.skillName}</h3>
+                </Box>
+                <Box
+                  sx={{
+                    gap: "2%",
+                    display: "flex",
+                    flexWrap: "wrap",
+                    mt: 2,
+                  }}
+                >
+                  {primarySkillsQuestions.map((item) => (
+                    <Box>
+                      <TextField
+                        sx={{ width: "350px" }}
+                        size="small"
+                        value={item.question}
+                        id="outlined-basic"
+                        variant="filled"
+                        color="secondary"
+                        label="Questions"
+                        InputLabelProps={{ shrink: true }}
+                        focused
+                      />
+                      {item.answer.map((value) => (
+                        <Box mt={1}>
+                        <h5>{value}</h5>
+                        </Box>
+                      ))}
+                    </Box>
+                  ))}
+                </Box>
+              </Box>
+              <Box mt={4}>
+                <h4>Secondary Skills</h4>
+                <Box
+                  sx={{
+                    display: "flex",
+                    mt: 1,
+                    flexWrap: "wrap",
+                  }}
+                >
+                  {secondarySkillsDto.map((item) => (
+                    <Box>
+                      <h3>{item.skillName}</h3>
+                      {item.question.map((value) => (
+                        <Box mt={2}>
+                          <TextField
+                            sx={{ width: "350px" }}
+                            size="small"
+                            value={value.question}
+                            id="outlined-basic"
+                            variant="filled"
+                            color="secondary"
+                            label="Question"
+                            InputLabelProps={{ shrink: true }}
+                            focused
+                          />
+                          {value.answer.map((result) => (
+                            <Box mt={1}>
+                            <h5> {result}</h5>
+                            </Box>
+                          ))}
+                        </Box>
+                      ))}
+                    </Box>
+                  ))}
+                </Box>
+              </Box>
+              <Box mt={4}>
+                <h4>Tertiary Skills</h4>
+                <Box
+                  sx={{
+                    display: "flex",
+                    gap: "2%",
+                    mt: 1,
+                    flexWrap: "wrap",
+                  }}
+                >
+                  {tertiarySkillsDto.map((item) => (
+                    <Box>
+                      <h3> {item.skillName}</h3>
 
+                      {item.question.map((value) => (
+                        <Box  mt={2}>
+                          <TextField
+                            sx={{ width: "350px"}}
+                            size="small"
+                            value={value.question}
+                            label="Questions"
+                            color="secondary"
+                            InputLabelProps={{ shrink: true }}
+                            id="outlined-basic"
+                            variant="filled"
+                            focused
+                          />
+                          {value.answer.map((result) => (
+                            <Box mt={1}>
+                              <h5 >{result}</h5>
+                            </Box>
+                          ))}
+                        </Box>
+                      ))}
+                    </Box>
+                  ))}
+                </Box>
+              </Box>
               <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  mt: 4,
-                }}
-              >
-                <TextField
-                  sx={{ width: "18%" }}
+                  sx={{
+                    display: "flex",
+                    gap: "2%",
+                    mt: 2,
+                    flexWrap: "wrap",
+                  }}
+                >
+              <TextField
+                  sx={{ width: "550px" }}
                   size="small"
                   value={skills.skillRemarks}
                   id="outlined-basic"
@@ -642,24 +723,7 @@ function Profile() {
                   InputLabelProps={{ shrink: true }}
                   focused
                 />
-
-                <TextField
-                  sx={{ width: "18%" }}
-                  size="small"
-                  // value={item.skillLevel}
-                  id="outlined-basic"
-                  variant="filled"
-                  color="secondary"
-                  label="Reason For Leaving Job"
-                  InputLabelProps={{ shrink: true }}
-                  focused
-                />
-                <Box sx={{ width: "18%" }}></Box>
-
-                <Box sx={{ width: "18%" }}></Box>
-                <Box sx={{ width: "18%" }}></Box>
-              </Box>
-              {/* ))} */}
+                </Box>
             </Box>
             {/* ========================== Skills Section Code End================= */}
             {/* ========================== Job Requirement Section Code Start================= */}
