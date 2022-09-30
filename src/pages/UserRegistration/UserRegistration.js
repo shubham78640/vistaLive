@@ -33,7 +33,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 function UserRegistration() {
   const [genderDD, setGenderDD] = React.useState([]);
   const [localityDD, setLocalityDD] = React.useState([]);
-  const [cityDD,setCityDD]  = React.useState([]);
+  const [cityDD, setCityDD] = React.useState([]);
   const [religionDD, setReligionDD] = React.useState([]);
   const [skillsDD, setSkillsDD] = React.useState([]);
   const [workingHrDD, setWorkingHrDD] = React.useState([]);
@@ -46,9 +46,9 @@ function UserRegistration() {
   const [candidateworkingHr, setCandidateWorkingHr] = React.useState();
   const [candidateprimarySkills, setCandidatePrimarySkills] =
     React.useState();
-    const [candidateOtherSkills, setCandidateOtherSkills] =
+  const [candidateOtherSkills, setCandidateOtherSkills] =
     React.useState();
-    const [candidatecity, setCandidateCity] = React.useState();
+  const [candidatecity, setCandidateCity] = React.useState();
   const [candidatelocality, setCandidateLocality] = React.useState();
   const [candidatereligion, setCandidateReligion] = React.useState();
   const [candidatereligionOther, setCandidateReligionOther] = React.useState();
@@ -64,9 +64,9 @@ function UserRegistration() {
   const [isError, setIsError] = React.useState(false);
   const [isErrorforAlt, setIsErrorforAlt] = React.useState(false);
   const [isErrorforAge, setIsErrorforAge] = React.useState(false);
-  const[textfieldshow,setTextfieldshow]= React.useState("none");
-  const[textfieldshowSkill,setTextfieldshowSkill]= React.useState("none");
-  const [ registeredSuccessfully,setRegisteredSuccessfully]=React.useState(false);
+  const [textfieldshow, setTextfieldshow] = React.useState("none");
+  const [textfieldshowSkill, setTextfieldshowSkill] = React.useState("none");
+  const [registeredSuccessfully, setRegisteredSuccessfully] = React.useState(false);
 
   function alphacheck(e) {
     const regex = /[A-Za-z]/;
@@ -82,23 +82,16 @@ function UserRegistration() {
     }
   }
 
-  
+
 
   useEffect(() => {
     const fetchData = async () => {
       let genderDD = await fetch(masterApiforAll + "user/drop-down/get/gender");
       let cityDataDD = await fetch("http://13.126.160.155:8081/locationmaster/city/get/all")
-      let localityDataDD = await fetch(
-`http://13.126.160.155:8081/locationmaster/micromarket/list/${candidatecity}`
-      );
-      let ReligionDataDD = await fetch(
-        masterApiforAll + "user/drop-down/get/religion"
-      );
+      let localityDataDD = await fetch(`http://13.126.160.155:8081/locationmaster/micromarket/list/${candidatecity}`);
+      let ReligionDataDD = await fetch(masterApiforAll + "user/drop-down/get/religion");
       let skillsDataDD = await fetch(masterApiforAll + "user/skill/get/skills");
-      let workingHrDataDD = await fetch(
-        masterApiforAll + "user/drop-down/get/workingHours"
-      );
-
+      let workingHrDataDD = await fetch(masterApiforAll + "user/drop-down/get/workingHours");
 
       let skillsDropDown = await skillsDataDD.json();
       let cityDropDown = await cityDataDD.json();
@@ -108,7 +101,7 @@ function UserRegistration() {
       let workingHrDropDown = await workingHrDataDD.json();
 
       let localityDropDownList = await localityDropDown.data;
-      let cityDropDownList= await cityDropDown.data;
+      let cityDropDownList = await cityDropDown.data;
       let ReligionDropDownList = await ReligionDropDown.data;
       let DDgender = await genderDropdown.data;
       let skillsDropDownList = await skillsDropDown.data;
@@ -125,7 +118,7 @@ function UserRegistration() {
     fetchData();
   }, [candidatecity]);
 
-  console.log("candidatecity",candidatecity)
+  console.log("candidatecity", candidatecity)
   const handleClick = async () => {
     try {
       let response = await axios.post(masterApiforAll + "user/internal/add", {
@@ -148,14 +141,10 @@ function UserRegistration() {
 
       });
       setRegisteredSuccessfully(true)
-      setTimeout(function(){
-       setRegisteredSuccessfully(false)
-       window.location.reload(false);
-    }, 9000);
-
-  //  window.location.reload(false);
-     
-      // setDisplayalert("visible");
+      setTimeout(function () {
+        setRegisteredSuccessfully(false)
+        window.location.reload(false);
+      }, 5000);
     } catch (error) {
       alert("Please Fill correct Details", error);
     }
@@ -164,38 +153,22 @@ function UserRegistration() {
   return (
     <>
       <Grid
-      
+
         sx={{
-          // textAlign: "center",
-          // justifyContent: "center",
-           marginLeft: "10%",
-          marginTop: "auto",
+          marginLeft: "auto",
+          marginRight: "auto",
         }}
       >
-        {/* <Card sx={{ padding: "5px" }}> */}
-          {/* <Grid sx={{ display: "flex" }}>
-          <CardMedia
-            image={image}
-            component="img"
-            sx={{
-              width: "150px",
-              paddingLeft: "10px",
-              textAlign: "center",
-              justifyContent: "center",
-              margin: "auto",
-              marginTop: "20px",
-            }}
-            alt="CARE CREW"
-          />
-        </Grid> */}
-          {/* <CardContent> */}
+        <Card sx={{ padding: "5px" }}>
+          <CardContent>
             <Box
-             mt={2}
               sx={{
                 fontSize: "22px",
                 fontWeight: "900",
                 color: "#BDBDBD",
-                
+                textAlign: "center",
+                justifyContent: "center",
+                margin: "auto",
               }}
             >
               Candidate Registration
@@ -203,12 +176,14 @@ function UserRegistration() {
             <Grid
               mt={0.5}
               container
-              spacing={3}
-              // sx={{
-              //   textAlign: "center",
-              //   justifyContent: "center",
-              //    marginLeft: "auto",
-              // }}
+              spacing={2.5}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                textAlign: "center",
+                justifyContent: "center",
+              }}
+              ml={-2}
             >
               <Grid lg={12} sm={12} sx={12} item>
                 <TextField
@@ -247,7 +222,6 @@ function UserRegistration() {
                     } else {
                       setIsError(true);
                       setHelpertext("Please Enter correct Number");
-                     
                     }
                   }}
                 />
@@ -310,20 +284,20 @@ function UserRegistration() {
               </Grid>
               <Grid lg={12} sm={12} sx={12} item>
                 <TextField
-                    sx={{
-                      width: "200px",
-                      "& input[type=number]": {
-                        "-moz-appearance": "textfield",
-                      },
-                      "& input[type=number]::-webkit-outer-spin-button": {
-                        "-webkit-appearance": "none",
-                        margin: 0,
-                      },
-                      "& input[type=number]::-webkit-inner-spin-button": {
-                        "-webkit-appearance": "none",
-                        margin: 0,
-                      },
-                    }}
+                  sx={{
+                    width: "200px",
+                    "& input[type=number]": {
+                      "-moz-appearance": "textfield",
+                    },
+                    "& input[type=number]::-webkit-outer-spin-button": {
+                      "-webkit-appearance": "none",
+                      margin: 0,
+                    },
+                    "& input[type=number]::-webkit-inner-spin-button": {
+                      "-webkit-appearance": "none",
+                      margin: 0,
+                    },
+                  }}
                   required
                   size="small"
                   id="standard-size-small"
@@ -341,66 +315,68 @@ function UserRegistration() {
                     if (
                       e.target.value.length < 1 ||
                       e.target.value.length === 2 ||
-                      e.target.value>"18"
+                      e.target.value > "18"
 
                     ) {
                       setIsErrorforAge(false);
                       setHelpertextAge("");
                     }
-                     else {
+                    else {
                       setIsErrorforAge(true);
                       setHelpertextAge("Please Enter correct Age");
                     }
                   }}
                 />
               </Grid>
+              <Grid lg={12} sm={12} sx={12}
+                spacing={2.5} item>
+                <Grid lg={12} sm={12} sx={12} item>
+                  <Autocomplete
+                    disablePortal
+                    size="small"
+                    id="combo-box-demo"
+                    options={skillsDD}
+                    onChange={(event, newValue) => {
+                      if (newValue.name === "Others") {
+                        setTextfieldshowSkill("visible")
+                        setCandidatePrimarySkills(newValue.uuid);
+                      } else {
+                        setTextfieldshowSkill("none")
+                      }
+                    }}
+                    renderInput={(params) => (
+                      <TextField
+                        sx={{ width: "200px" }}
+                        variant="standard"
+                        {...params}
+                        placeholder="Primary Skill"
+                        onChange={(event, newValue) => {
+                          setCandidatePrimarySkills("");
+                        }}
+                      />
+                    )}
+                    getOptionLabel={(item) => `${item.name}`}
+                  />
+                </Grid>
 
-              <Grid lg={12} sm={12} sx={12} item>
-                <Autocomplete
-                  disablePortal
-                  size="small"
-                  id="combo-box-demo"
-                  options={skillsDD}
-                  onChange={(event, newValue) => {
-                    if(newValue.name==="Others"){
-                      setTextfieldshowSkill("visible")
-                      setCandidatePrimarySkills(newValue.uuid);
-                     }else{
-                      setTextfieldshowSkill("none")
-                     }
-                  }}
-                  renderInput={(params) => (
-                    <TextField
-                      sx={{ width: "200px" }}
-                      variant="standard"
-                      {...params}
-                      placeholder="Primary Skill"
-                      onChange={(event, newValue) => {
-                        setCandidatePrimarySkills("");
-                      }}
-                    />
-                  )}
-                  getOptionLabel={(item) => `${item.name}`}
-                />
+                <Grid 
+                sx={{display: `${textfieldshowSkill}`}} mt={2.5} item >
+                  <TextField
+                    sx={{ width: "200px", display: `${textfieldshowSkill}` }}
+                    required
+                    size="small"
+                    id="standard-size-small"
+                    type="text"
+                    placeholder="Other Skill"
+                    variant="standard"
+                    onInput={(e) => {
+                      setCandidateOtherSkills(e.target.value);
+                    }}
+                    pattern="[a-zA-Z]*"
+                    onKeyPress={(e) => alphacheck(e)}
+                  />
+                </Grid>
               </Grid>
-
-              <Grid lg={12} sm={12} sx={12} item >
-                <TextField
-                  sx={{ width: "200px" , display:`${textfieldshowSkill}`}}
-                  required
-                  size="small"
-                  id="standard-size-small"
-                  type="text"
-                  placeholder="Other Skill"
-                  variant="standard"
-                  onInput={(e) => {
-                    setCandidateOtherSkills(e.target.value);
-                  }}
-                  pattern="[a-zA-Z]*"
-                  onKeyPress={(e) => alphacheck(e)}
-                />
-              </Grid>
-
               <Grid lg={12} sm={12} sx={12} item>
                 <Autocomplete
                   disablePortal
@@ -449,7 +425,7 @@ function UserRegistration() {
                 />
               </Grid>
 
-          
+
 
               <Grid lg={12} sm={12} sx={12} item>
                 <Autocomplete
@@ -475,53 +451,58 @@ function UserRegistration() {
                 />
               </Grid>
 
-              <Grid lg={12} sm={12} sx={12} item>
-                <Autocomplete
-                  disablePortal
-                  size="small"
-                  id="combo-box-demo"
-                  options={religionDD}
-                  onChange={(event, newValue) => {
-                    if(newValue.key==="OTHERS"){
-                      setTextfieldshow("visible")
-                      setCandidateReligion(newValue.key);
-                     }else{
-                      setTextfieldshow("none") 
-                     }
+              <Grid lg={12} sm={12} sx={12}
+                spacing={2.5} item>
 
-                  }}
-                  renderInput={(params) => (
-                    <TextField
-                      variant="standard"
-                      sx={{ width: "200px" }}
-                      {...params}
-                      placeholder="Religion"
-                      onChange={(event, newValue) => {
-                        setCandidateReligion("");
+                <Grid lg={12} sm={12} sx={12} item>
+                  <Autocomplete
+                    disablePortal
+                    size="small"
+                    id="combo-box-demo"
+                    options={religionDD}
+                    onChange={(event, newValue) => {
+                      if (newValue.key === "OTHERS") {
+                        setTextfieldshow("visible")
+                        setCandidateReligion(newValue.key);
+                      } else {
                         setTextfieldshow("none")
-                      }}
-                    />
-                  )}
-                  getOptionLabel={(item) => `${item.value}`}
-                />
-              </Grid>
-              <Grid lg={12} sm={12} sx={12} item >
-                <TextField
-                  sx={{ width: "200px" , display:`${textfieldshow}`}}
-                  required
-                  size="small"
-                  id="standard-size-small"
-                  type="text"
-                  placeholder="Other Religion"
-                  variant="standard"
-                  onInput={(e) => {
-                    setCandidateReligionOther(e.target.value);
-                  }}
-                  pattern="[a-zA-Z]*"
-                  onKeyPress={(e) => alphacheck(e)}
-                />
-              </Grid>
+                      }
 
+                    }}
+                    renderInput={(params) => (
+                      <TextField
+                        variant="standard"
+                        sx={{ width: "200px" }}
+                        {...params}
+                        placeholder="Religion"
+                        onChange={(event, newValue) => {
+                          setCandidateReligion("");
+                          setTextfieldshow("none")
+                        }}
+                      />
+                    )}
+                    getOptionLabel={(item) => `${item.value}`}
+                  />
+                </Grid>
+                <Grid mt={2.5}
+                 sx={{display: `${textfieldshow}`}} 
+                 item>
+                  <TextField
+                    sx={{ width: "200px"}}
+                    required
+                    size="small"
+                    id="standard-size-small"
+                    type="text"
+                    placeholder="Other Religion"
+                    variant="standard"
+                    onInput={(e) => {
+                      setCandidateReligionOther(e.target.value);
+                    }}
+                    pattern="[a-zA-Z]*"
+                    onKeyPress={(e) => alphacheck(e)}
+                  />
+                </Grid>
+              </Grid>
               <Grid lg={12} sm={12} sx={12} item >
                 <TextField
                   required
@@ -564,24 +545,26 @@ function UserRegistration() {
                 />
               </Grid>
             </Grid>
-            <Grid mt={4} ml={4} item>
-              <Button variant="contained" color="success" onClick={handleClick}>
+            <Grid mt={4} sx={{
+              textAlign: "center",
+              justifyContent: "center",
+            }} item>
+              <Button sx={{ width: "200px", }} variant="contained" color="success" onClick={handleClick}>
                 Submit
               </Button>
             </Grid>
-          {/* </CardContent> */}
-        {/* </Card> */}
+          </CardContent>
+        </Card>
         <Grid>
-              <Dialog
-        open={registeredSuccessfully}
-      //  onClose={registeredSuccessfully}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-       Profile Saved
-        </DialogTitle>
-      </Dialog>
+          <Dialog
+            open={registeredSuccessfully}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">
+              Profile Saved
+            </DialogTitle>
+          </Dialog>
         </Grid>
       </Grid>
     </>
