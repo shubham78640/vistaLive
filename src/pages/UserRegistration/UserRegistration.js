@@ -144,7 +144,7 @@ function UserRegistration() {
       setTimeout(function () {
         setRegisteredSuccessfully(false)
         window.location.reload(false);
-      }, 5000);
+      }, 9000);
     } catch (error) {
       alert("Please Fill correct Details", error);
     }
@@ -159,8 +159,8 @@ function UserRegistration() {
           marginRight: "auto",
         }}
       >
-        <Card sx={{ padding: "5px" }}>
-          <CardContent>
+        <Card   sx={{ width:"350px" , padding: "0px" }}>
+          <CardContent >
             <Box
               sx={{
                 fontSize: "22px",
@@ -314,9 +314,7 @@ function UserRegistration() {
                     );
                     if (
                       e.target.value.length < 1 ||
-                      e.target.value.length === 2 ||
-                      e.target.value > "18"
-
+                      e.target.value.length === 2
                     ) {
                       setIsErrorforAge(false);
                       setHelpertextAge("");
