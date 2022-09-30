@@ -41,6 +41,14 @@ function Profile() {
   const [documents, setDocuments] = React.useState([]);
   const [skills, setSkills] = React.useState([]);
   const [properSkillsDto, setProperSkillsDto] = React.useState([]);
+  const [primarySkillsDto, setPrimarySkillsDto] = React.useState("");
+  const [primarySkillsQuestions, setPrimarySkillsQuestions] = React.useState(
+    []
+  );
+  const [secondarySkillsDto, setSecondarySkillsDto] = React.useState([]);
+  const [secondarySkillsQuestions, setSecondarySkillsQuestions] =
+    React.useState([]);
+  const [tertiarySkillsDto, setTertiarySkillsDto] = React.useState([]);
   const [subSkillsDto, setSubSkillsDto] = React.useState([]);
   const [data, setdata] = React.useState([]);
   const { id } = useParams();
@@ -66,7 +74,21 @@ function Profile() {
         setSkills(useprofiledata.skillResponseDto);
         setProperSkillsDto(skills.skillsMappingDto);
         // setSubSkillsDto(properSkillsDto.skillDto)
+        setPrimarySkillsDto(
+          useprofiledata.skillResponseDto.skillsMappingDto[0].skillDto[0]
+        );
+        setPrimarySkillsQuestions(
+          useprofiledata.skillResponseDto.skillsMappingDto[0].skillDto[0]
+            .question
+        );
 
+        setSecondarySkillsDto(
+          useprofiledata.skillResponseDto.skillsMappingDto[1].skillDto
+        );
+        // setSecondarySkillsQuestions(useprofiledata.skillResponseDto.skillsMappingDto[1].skillDto.question)
+        setTertiarySkillsDto(
+          useprofiledata.skillResponseDto.skillsMappingDto[2].skillDto
+        );
         setname(userData.firstName);
       } catch (error) {
         console.log(error);
